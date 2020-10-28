@@ -72,7 +72,7 @@ const storage = new GridFsStorage({
             filename: filename,
             bucketName: 'uploads',
             //add tiny url in metadata
-            metadata: `/${randomString}`
+            metadata: `img-tiny-url-maker.herokuapp.com/${randomString}`
             
           };
           resolve(fileInfo);
@@ -139,7 +139,7 @@ app.post('/upload', upload.single('file') , (req, res) => {
     try{
         
         //store url information to update UI
-        data.push({longUrl: `/img/${req.file.filename}`, shortUrl: `${req.file.metadata}`, fileName: `${req.file.filename}`});
+        data.push({longUrl: `img-tiny-url-maker.herokuapp.com/img/${req.file.filename}`, shortUrl: `${req.file.metadata}`, fileName: `${req.file.filename}`});
 
         //update URLs on UI
         const table = data.map(el => updateMarkup(tableTemplate, el)).join('');
