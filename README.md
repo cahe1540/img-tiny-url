@@ -28,4 +28,4 @@ What I *think I need to do:
 [x] 6. make and use a logo for the app 
 
 ### //**********PART 4 PUBLISH
-[ ] 1. deploy it on a free server                    
+[x] 1. deploy it on a free server                    
