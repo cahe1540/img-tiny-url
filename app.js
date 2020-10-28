@@ -9,7 +9,10 @@ const methodOverride = require('method-override');
 const fs = require('fs');
 const shortID = require('shortid');
 const morgan = require('morgan');
-const { Template } = require('ejs');
+const dotenv = require('dotenv');
+
+//env variables configuration
+dotenv.config({ path: './config.env' });
 
 //express object to use as server
 const app = express();
@@ -198,7 +201,7 @@ app.get(`/:shortUrl`, (req, res) => {
 //INITIALIZE APP
 
 //define port number
-const port = 5125;
+const port = process.env.PORT || 3000;
 
 //launch server
 app.listen(port, () => {
