@@ -31,7 +31,7 @@ What I *think I need to do:
 [x] 1. deploy it on a free server                    
 
 
-###//***Notes:
+### //***Notes:
 1. Didn't have time to research more on the open graph protocol and google tags.
 2. There were some things on the original promt that I wasn't sure about, namely bullet 3: "run server side binary...".
 3. I should refactor the code for more readability
