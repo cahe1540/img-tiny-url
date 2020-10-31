@@ -130,10 +130,6 @@ app.get('/', (req, res) => {
     res.status(201).end(indexHTML);
 });
 
-app.get('/', (req, res) => {
-  res.status(201).end(indexHTML);
-});
-
 //POST, upload the file to mongoDB
 app.post('/upload', upload.single('file') , (req, res) => {
     try{
