@@ -127,7 +127,17 @@ const updateMarkup = (html, obj) => {
 //ROUTES
 //GET, render home page
 app.get('/', (req, res) => {
-    res.status(201).end(indexHTML);
+    //check the server for data
+    //update URLs on UI
+    try{
+      const table = data.map(el => updateMarkup(tableTemplate, el)).join('');
+      const indexUpdate = indexTemplate.replace(/{TABLE}/g, table);
+
+      res.status(200).end(indexUpdate);
+    }
+    catch(err){
+      res.status(404).end(err);
+    }
 });
 
 //POST, upload the file to mongoDB
