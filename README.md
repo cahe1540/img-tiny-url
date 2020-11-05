@@ -1,6 +1,6 @@
 # img-tiny-url
 
-Develop web app that creates tiny url for uploaded image
+Develop web app that creates tiny url for uploaded image [Check it out](https://img-tiny-url-maker.herokuapp.com/)
 
 ## Languages, Frameworks, Libraries or other technologies used
 * HTML, CSS, JS
