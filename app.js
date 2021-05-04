@@ -64,7 +64,7 @@ const storage = new GridFsStorage({
           randomString = randomString.replace(/_|-/g, "");
           randomString = randomString.slice(0, -2);
           
-          //generate unique filename wiht randombytes
+          //generate unique filename with randombytes
           const filename = buf.toString('hex') + path.extname(file.originalname);
           
           //create fileInfo object to resolve 
@@ -72,7 +72,7 @@ const storage = new GridFsStorage({
             filename: filename,
             bucketName: 'uploads',
             //add tiny url in metadata
-            metadata: `/${randomString}`
+            metadata: `img-tiny-url-maker.herokuapp.com/${randomString}`
             
           };
           resolve(fileInfo);
@@ -127,11 +127,17 @@ const updateMarkup = (html, obj) => {
 //ROUTES
 //GET, render home page
 app.get('/', (req, res) => {
-    res.status(201).end(indexHTML);
-});
+    //check the server for data
+    //update URLs on UI
+    try{
+      const table = data.map(el => updateMarkup(tableTemplate, el)).join('');
+      const indexUpdate = indexTemplate.replace(/{TABLE}/g, table);
 
-app.get('/', (req, res) => {
-  res.status(201).end(indexHTML);
+      res.status(200).end(indexUpdate);
+    }
+    catch(err){
+      res.status(404).end(err);
+    }
 });
 
 //POST, upload the file to mongoDB
@@ -139,7 +145,7 @@ app.post('/upload', upload.single('file') , (req, res) => {
     try{
         
         //store url information to update UI
-        data.push({longUrl: `/img/${req.file.filename}`, shortUrl: `${req.file.metadata}`, fileName: `${req.file.filename}`});
+        data.push({longUrl: `img-tiny-url-maker.herokuapp.com/img/${req.file.filename}`, shortUrl: `${req.file.metadata}`, fileName: `${req.file.filename}`});
 
         //update URLs on UI
         const table = data.map(el => updateMarkup(tableTemplate, el)).join('');
